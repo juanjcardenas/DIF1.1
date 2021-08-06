@@ -6,22 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Registro">
 
-    <TextView
-        android:id="@+id/pis"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="100dp"
-        android:backgroundTint="#00FFFFFF"
-        android:text="@string/pis"
-        android:textColor="@color/rojo"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.03" />
+
 
     <TextView
         android:id="@+id/nomc"
@@ -34,7 +19,7 @@
         android:textSize="28dp"
         android:textStyle="bold"
         app:layout_constraintVertical_bias="0.08"
-        app:layout_constraintTop_toBottomOf="@+id/pis"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -186,21 +171,33 @@
         android:drawableEnd="@drawable/ic_baseline_date_range_24"
         />
 
+    <TextView
+        android:id="@+id/pis"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:backgroundTint="#00FFFFFF"
+        android:text="@string/pis"
+        android:textColor="@color/rojo"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/registrar"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fn"
+        app:layout_constraintVertical_bias="0.56" />
 
     <Button
         android:id="@+id/registrar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="200dp"
         android:layout_marginEnd="30dp"
         android:text="@string/reg"
         app:layout_constraintVertical_bias="0.5"
         app:layout_constraintTop_toBottomOf="@+id/fn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
+        app:layout_constraintStart_toEndOf="@+id/pis" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

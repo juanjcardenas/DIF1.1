@@ -50,20 +50,33 @@
         android:drawableEnd="@drawable/ic_people"
          />
 
+
     <EditText
         android:id="@+id/clave"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
         android:inputType="textPassword"
         android:hint="@string/clave"
         app:layout_constraintVertical_bias="0.05"
         app:layout_constraintTop_toBottomOf="@+id/user"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ojo"
         app:layout_constraintStart_toStartOf="parent"
-        android:drawableEnd="@drawable/ojo"/>
+        />
+    <ToggleButton
+        android:id="@+id/ojo"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@drawable/ojo"
+        android:layout_marginRight="30dp"
+        android:textOff=""
+        android:textOn=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/clave"
+        app:layout_constraintTop_toBottomOf="@+id/user"
+        app:layout_constraintBottom_toTopOf="@+id/rc"
+        />
     <TextView
         android:id="@+id/rc"
         android:layout_width="0dp"
