@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCanceledListener;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,18 +25,8 @@ import java.util.Calendar;
 public class Registro extends AppCompatActivity implements View.OnClickListener {
 
     private TextView nom, ap, gm, pass, passconf, tel, fn, pis;
-    public Button resgistrar;
+    //Button registrar;
     private int dia, mes, ano;
-
-    //Variable de los datos que vamos a registrar;
-    private String nombre="";
-    private String apellido="";
-    private String gmail ="";
-    private String clave ="";
-    private String verificacionclave ="";
-    private String telefono="";
-    private String fecha="";
-
 
     private FirebaseAuth mAuth;//base de datos
 
@@ -53,46 +44,10 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
         passconf = findViewById(R.id.passconf);
         tel = findViewById(R.id.tel);
         fn = findViewById(R.id.fn);
+        pis = findViewById(R.id.pis);//DEFINIMOS --PIS- COMO VARIABLE PARA VOLVER AL LOGIN
 
-        //DEFINIMOS --PIS- COMO VARIABLE PARA VOLVER AL LOGIN
-        pis = findViewById(R.id.pis);
-
-        //linea de la instancia
-        mAuth = FirebaseAuth.getInstance();//base de datos necesita una instancia de autenticación de base de fuego
-
-        resgistrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nombre = nom.getText().toString();
-                apellido = ap.getText().toString();
-                gmail = gm.getText().toString();
-                clave = pass.getText().toString();
-                verificacionclave = passconf.getText().toString();
-                telefono = tel.getText().toString();
-                fecha = fn.getText().toString();
-
-                if (!nombre.isEmpty() && !apellido.isEmpty() && !gmail.isEmpty() && !clave.isEmpty() && !verificacionclave.isEmpty() && !telefono.isEmpty() && !fecha.isEmpty()){
-
-                    if (clave.length() >= 8 && verificacionclave.length() >= 8){
-                        if(clave.length()==verificacionclave.length()){
-                            registrarUser();
-                        }
-                    }else{
-                        Toast.makeText( Registro.this, "La clave debe tener almenos 8 caracteres", Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-                else{
-                    Toast.makeText( Registro.this, "Debe completar los campos", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-
-
-        
+        /** aca se lleva a la instancia principal del Main **/
         pis.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View registro) {
 
@@ -100,41 +55,13 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
                 startActivity(i);
             }
         });
-
         fn.setOnClickListener(this);
 
-    }//aca termina el metodo onCreate
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-
-    }
-
-    private void updateUI(FirebaseUser currentUser) {
-        Log.i("User:", ""+currentUser);
-    }
-
-    public void createUserWithEmaiñAndpasswored(nombre, apellido){
+        //linea de la instancia
+        mAuth = FirebaseAuth.getInstance();//base de datos necesita una instancia de autenticación de base de fuego
 
 
-    }
-
-    /** private void registrarUser() {
-        mAuth.createUserWithEmailAndPassword(gmail, clave).addOnCanceledListener(new OnCanceledListener<AuthResult>() {
-            @Override
-            public void onCanceled() {
-                Object task;
-                if (task.isSuccessful()){
-
-                }
-            }
-        });
-    }**/
-
-
+    }/** aca termina el metodo onCreate **/
 
     //se invoca los parametros de la fecha en el registro
     @Override
@@ -149,10 +76,67 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 fn.setText(dayOfMonth+"/"+(month+1)+"/"+year);
             }
-        }
-                ,dia,mes,ano);
+        },dia,mes,ano);
         datePickerDialog.show();
     }
 
-
+    /** los metodos onStart y updateUI **/
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
     }
+    private void updateUI(FirebaseUser currentUser) {
+
+        Log.i("User:", ""+currentUser);
+    }
+
+    public void createUserWithEmailAndPassword(String email, String password){
+        mAuth.createUserWithEmailAndPassword(email,password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+
+                        if (!task.isSuccessful()) {
+                            Log.d("ÉXITO","createUserWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+
+                            //ENVIAR A UNA NUEVA LSITA
+                        } else {
+                            Log.w("ERROR", "AcreateUserWithEmail:failure", task.getException());
+                            Toast.makeText(Registro.this, "La Autenticaciuo llego.", Toast.LENGTH_SHORT).show();
+                            updateUI(null);
+                        }
+                    }
+                });
+    }
+
+    public void buttonpress(View view){
+
+        String nombre = nom.getText().toString();
+        String apellido = ap.getText().toString();
+        String email = gm.getText().toString();
+        String contrasena = pass.getText().toString();
+        String rclave = passconf.getText().toString();
+        String telefono = tel.getText().toString();
+        String fechan = fn.getText().toString();
+
+        if (!nombre.isEmpty() && !apellido.isEmpty() && !email.isEmpty() && !contrasena.isEmpty() && !rclave.isEmpty() && !telefono.isEmpty() && !fechan.isEmpty()){
+
+            if (contrasena.length() >=  6 && rclave.length() >= 6){
+                if(contrasena.length() == rclave.length()){
+                    createUserWithEmailAndPassword(email,contrasena);
+                }
+            }else{
+                Toast.makeText( Registro.this, "La clave debe tener almenos 8 caracteres", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+        else
+            Toast.makeText( Registro.this, "Debe completar los campos", Toast.LENGTH_SHORT).show();
+    }
+}
+
