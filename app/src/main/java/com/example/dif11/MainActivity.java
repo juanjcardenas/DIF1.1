@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        r1 = findViewById(R.id.reg);
+        r1 = findViewById(R.id.cc);
         rc = findViewById(R.id.rc);
         ojo = findViewById(R.id.ojo);
 
