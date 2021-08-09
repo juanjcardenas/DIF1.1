@@ -100,14 +100,20 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
 
 
                         if (!task.isSuccessful()) {
+                            Intent i = new Intent(Registro.this, MainActivity.class);
+                            startActivity(i);
+
                             Log.d("ÉXITO","createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+
+                            Toast.makeText(Registro.this, "El registro fue exitoso.", Toast.LENGTH_SHORT).show();
                             updateUI(user);
 
                             //ENVIAR A UNA NUEVA LSITA
                         } else {
                             Log.w("ERROR", "AcreateUserWithEmail:failure", task.getException());
-                            Toast.makeText(Registro.this, "La Autenticaciuo llego.", Toast.LENGTH_SHORT).show();
+
+                            Toast.makeText(Registro.this, "La Autenticacion no llego.", Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
                     }

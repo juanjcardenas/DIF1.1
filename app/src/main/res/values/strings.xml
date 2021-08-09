@@ -14,7 +14,7 @@
 
     <string name="clave">Contraseña</string>
     <string name="clavecof">Confirmación</string>
-    <string name="c2">Utilizar ocho caracteres como minimocon una combinación de letras, números y simbolos</string>
+    <string name="c2">Utilizar ocho caracteres como minimo con una combinación de letras, números y simbolos</string>
     <string name="mc">Mostrar contraseña</string>
     <string name="tel">Teléfono</string>
     <string name="fn">Fecha de nacimiento</string>
@@ -23,4 +23,10 @@
     //button del activity main
     <string name="reg">Registrar</string>
     <string name="login">Login</string>
+    <string name="cc">Crear cuenta</string>
+
+    //procesos
+    <string name="Dis">Disponible</string>
+    <string name="plata">0$</string>
+
 </resources>

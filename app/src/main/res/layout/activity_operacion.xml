@@ -6,4 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".operacion">
 
+    <TextView
+        android:id="@+id/dis"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/Dis"
+        android:layout_marginStart="220dp"
+        android:layout_marginEnd="40dp"
+        android:gravity="end"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/plata"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/plata"
+        android:layout_marginStart="220dp"
+        android:layout_marginEnd="40dp"
+        android:gravity="end"
+        app:layout_constraintVertical_bias="0.02"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dis"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

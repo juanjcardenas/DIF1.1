@@ -193,6 +193,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
         android:text="@string/reg"
+        android:onClick="buttonpress"
         app:layout_constraintVertical_bias="0.5"
         app:layout_constraintTop_toBottomOf="@+id/fn"
         app:layout_constraintBottom_toBottomOf="parent"
